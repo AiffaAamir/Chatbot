@@ -3,6 +3,11 @@ import axios from "axios";
 import "./App.css";
 import { motion, AnimatePresence } from "framer-motion";
 import ReactMarkdown from "react-markdown";
+import userAvatar from './assets/user.png';
+import botAvatar from './assets/bot.png';
+import sendIcon from './assets/send.png';
+
+
 
 
 
@@ -60,7 +65,7 @@ function App() {
               transition={{ duration: 0.3 }}
             >
               <div className="avatar">
-                {msg.sender === "user" ? "👤" : "🤖"}
+                <img src={msg.sender === "user" ? userAvatar : botAvatar} alt="avatar" />
               </div>
               <motion.div
                   className={`chat-bubble ${msg.sender}`}
@@ -104,7 +109,7 @@ function App() {
           placeholder="Ask me anything..."
         ></textarea>
         <button className="send-button" onClick={generateAnswer}>
-          " ➤ "
+          <img src={sendIcon} alt="Send" />
         </button>
       </div>
     </div>
