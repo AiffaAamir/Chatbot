@@ -2,6 +2,8 @@ import { useState } from "react";
 import axios from "axios";
 import "./App.css";
 import { motion, AnimatePresence } from "framer-motion";
+import ReactMarkdown from "react-markdown";
+
 
 
 function App() {
@@ -61,11 +63,16 @@ function App() {
                 {msg.sender === "user" ? "👤" : "🤖"}
               </div>
               <motion.div
-                className={`chat-bubble ${msg.sender}`}
-                layout
-              >
-                {msg.text}
-              </motion.div>
+                  className={`chat-bubble ${msg.sender}`}
+                  layout
+                >
+                  {msg.sender === "bot" ? (
+                    <ReactMarkdown>{msg.text}</ReactMarkdown>
+                  ) : (
+                    msg.text
+                  )}
+                </motion.div>
+
             </motion.div>
           ))}
 

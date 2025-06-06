@@ -134,3 +134,23 @@ body {
   50% { opacity: 1; }
   100% { opacity: 0.3; }
 }
+.chat-bubble.bot p {
+  margin: 0.25rem 0;
+  line-height: 1.5;
+}
+
+.chat-bubble.bot strong {
+  color: #0ff;
+  font-weight: 600;
+}
+
+.chat-bubble.bot em {
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.chat-bubble.bot ul,
+.chat-bubble.bot ol {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0;
+}
