@@ -94,3 +94,43 @@ body {
 .send-button:hover {
   background: #0ff8;
 }
+.chat-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.user-row {
+  flex-direction: row-reverse;
+}
+
+.avatar {
+  font-size: 1.5rem;
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: #222;
+  color: #0ff;
+}
+.typing .dot {
+  animation: blink 1.4s infinite;
+  font-size: 1.2rem;
+  padding: 0 2px;
+  opacity: 0.3;
+}
+
+.typing .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.typing .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes blink {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}

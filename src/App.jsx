@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import "./App.css";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 function App() {
   const [question, setQuestion] = useState("");
@@ -45,14 +47,46 @@ function App() {
   return (
     <div className="chat-container">
       <div className="chat-box">
-        {chat.map((msg, i) => (
-          <div
-            key={i}
-            className={`chat-bubble ${msg.sender === "user" ? "user" : "bot"}`}
-          >
-            {msg.text}
-          </div>
-        ))}
+        <AnimatePresence initial={false}>
+          {chat.map((msg, i) => (
+            <motion.div
+              key={i}
+              className={`chat-row ${msg.sender === "user" ? "user-row" : "bot-row"}`}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="avatar">
+                {msg.sender === "user" ? "👤" : "🤖"}
+              </div>
+              <motion.div
+                className={`chat-bubble ${msg.sender}`}
+                layout
+              >
+                {msg.text}
+              </motion.div>
+            </motion.div>
+          ))}
+
+          {isTyping && (
+            <motion.div
+              className="chat-row bot-row"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <div className="avatar">🤖</div>
+              <div className="chat-bubble bot typing">
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+                <span className="dot">.</span>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+
         {isTyping && <div className="typing">AI is typing...</div>}
       </div>
       <div className="input-box">
